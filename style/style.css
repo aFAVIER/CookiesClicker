@@ -9,6 +9,9 @@ body {
 	width: 500px;
 	text-align: center;
 }
+#img1{
+	cursor: pointer;
+}
 .score{
 	border:5px solid #231500;
 	margin:auto;
@@ -19,7 +22,6 @@ body {
 	justify-content: space-between;
 
 }
-
 .score p{
 	padding: 10px;
 	font-size: 1.3em;

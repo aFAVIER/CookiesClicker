@@ -14,10 +14,10 @@
 			<img id="img1" src="images/cookie.png" />
 		</div> 
 
-		<!--<div class="bouton">
-			<img src="images/multiplicatorx10.png" />
-			<div id="prix">0</div>
-		</div> -->
+		<div class="bouton">
+			<button onClick="auto_click();" id ="bouton">Auto-click !</button>
+			<div id="prix"></div>
+		</div>
 		<div class="score">
 		<p>SCORE TOTAL</p>
 			<p id="score">0</p>
@@ -26,7 +26,7 @@
 		<div class="reset">
 			<a onClick="resetscore();" class="resetbutton">Reset</a>
 		</div>
-
+		<p><strong>Meilleur score: <span id="bestScore">0</span></strong></p>
 	</div>
 	<script type="text/javascript" src="script/cookie.js"></script>
 </body>
