@@ -70,4 +70,7 @@ window.onbeforeunload = function(){		/*Creation d'un cookie seulement si score1 
 		setCookie("high_score", 0);
 	}
 }
+if(!getCookie("high_score")){
+	setCookie("high_score", 0);
+}
 bScore.innerHTML = getCookie("high_score");
