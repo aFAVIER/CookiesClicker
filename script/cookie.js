@@ -1,10 +1,11 @@
 var i = 0;
 var j = 0;
-var img = document.getElementById("img1");
+var img1 = document.getElementById("img1");
 var score = document.getElementById("score");
 var bouton = document.getElementsByClassName("bouton");
 
-bouton.addEventlistener("click", function(){
+
+/*bouton[0].addEventlistener("click", function(){
 		j++;
 	}, false);
 
@@ -16,9 +17,12 @@ function scores(){
 	else {
 		i++;
 		score.innerHTML = i;
-	}
+	}*/
 		
 
-img.addEventListener("click", scores(), false);
+img1.addEventListener("click", function(){
+	i++;
+		score.innerHTML = i;
+	}, false);
 
 
