@@ -1,4 +1,4 @@
-var i = 0;
+var i = 0; /*Variable score*/
 var j = 0;
 var img1 = document.getElementById("img1");
 var score = document.getElementById("score");
@@ -21,10 +21,9 @@ function scores(){
 		
 
 img1.addEventListener("click", function(){
-	i++;
-		score.innerHTML = i;
+	i++; /*Ajoute 1 à la variable de score*/
+		score.innerHTML = i; /*Modifie le contenu de la balise score par i*/
 	}, false);
-
 
 
 img1.onmousedown = function() {
@@ -33,4 +32,9 @@ img1.onmousedown = function() {
 
 img1.onmouseup = function() {
 	img1.src = "images/cookie.png";
+}
+
+function resetscore(){
+	i = 0;
+	score.innerHTML = 0;
 }

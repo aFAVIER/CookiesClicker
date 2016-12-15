@@ -17,3 +17,6 @@ Une `<div>` comprenant un bouton pour améliorer nos cliques.
 **`<div class="bouton"></div>`**  
 Dans la `<div>` une autre `<div>` pour afficher le prix.  
 **`<div id="prix"></div>`**
+____
+Une `<div>` comprenant un bouton pour reset le score.  
+**`<div class="reset"></div>`**  
