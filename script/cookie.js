@@ -26,3 +26,11 @@ img1.addEventListener("click", function(){
 	}, false);
 
 
+
+img1.onmousedown = function() {
+	img1.src = "images/cookie (copie).png";
+}
+
+img1.onmouseup = function() {
+	img1.src = "images/cookie.png";
+}
