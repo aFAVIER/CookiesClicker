@@ -65,9 +65,6 @@ function getCookie(sName) {
 window.onbeforeunload = function(){		/*Creation d'un cookie seulement si score1 > au cookie en cours */
 	if(score1 > parseInt(getCookie("high_score"))){
 		setCookie("high_score", score1);
-	}	
-	else{
-		setCookie("high_score", 0);
 	}
 }
 if(!getCookie("high_score")){
