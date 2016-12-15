@@ -1,6 +1,5 @@
 body {
-	background-image: url(images/background.jpeg) no-repeat center fixed;
+	background: url(../images/background.jpg) no-repeat center fixed;
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 }
-
