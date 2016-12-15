@@ -14,4 +14,6 @@ Dans la `<div>` du score, un `<p>` relier à un script.
 **`<p id="score"></p>`**
 ____
 Une `<div>` comprenant un bouton pour améliorer nos cliques.  
-**`<div class="bouton"></div>`**
+**`<div class="bouton"></div>`**  
+Dans la `<div>` une autre `<div>` pour afficher le prix.  
+**`<div id="prix"></div>`**
