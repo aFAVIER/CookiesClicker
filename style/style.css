@@ -1,6 +1,6 @@
 body {
-	background-image: url(http://img1.mxstatic.com/wallpapers/34903c7e90faffd307d10ad7f99251bb_large.jpeg);
-	
-	
+	background-image: url(images/background.jpeg) no-repeat center fixed;
+	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+	background-size: cover; /* version standardisée */
 }
 
