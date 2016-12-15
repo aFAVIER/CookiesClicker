@@ -66,5 +66,8 @@ window.onbeforeunload = function(){		/*Creation d'un cookie seulement si score1 
 	if(score1 > parseInt(getCookie("high_score"))){
 		setCookie("high_score", score1);
 	}	
+	else{
+		setCookie("high_score", 0);
+	}
 }
 bScore.innerHTML = getCookie("high_score");
