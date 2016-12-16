@@ -1,4 +1,5 @@
-var score1 = 0; 											/*Variable score*/
+var score1 = 0; 	
+var temps = 200;										/*Variable score*/
 var ac ;													/*variable de l'auto_click */
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Varibale prix
@@ -11,39 +12,10 @@ var curseur = document.getElementById("curseur");			//Curseur auto_Click
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
-/*
-function auto_click(){						
-	if(score1 >= 30){									
-		ac = setInterval("autoClick()", 200);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
-		score1 -= 30;							//Retire 30 à la variable score1
-		prix.innerHTML = "<strong>prix : 100 cookies</strong>";  //Modifie le texte du prix
-		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
-		bouton.setAttribute("onClick", "auto_clickX2()");
-	}
-}
-function auto_clickX2(){
-	if(score1 >= 100){									
-		ac = setInterval("autoClick()", 100);//Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
-		score1 -= 100;							//Retire 30 à la variable score1
-		prix.innerHTML = "<strong>prix : 300 cookies</strong>";  //Modifie le texte du prix
-		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
-		bouton.setAttribute("onClick", "auto_clickX3()");
-	}
-}
-function auto_clickX3(){
-	if(score1 >= 300){									
-		ac = setInterval("autoClick()", 50);//Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
-		score1 -= 300;							//Retire 30 à la variable score1
-		prix.innerHTML = "<strong>Indisponible</strong>";  //Modifie le texte du prix
-		bouton.removeAttribute("onClick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
-	}
-} */
-
-
-
 function clickMainAuto(){
 	if (score1 >= prixCooki){
-		ac = setInterval("autoClick()", 200);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
+		clearInterval(ac);
+		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
 		score1 -= prixCooki;							//Retire 30 à la variable score1
 		prixCooki = prixCooki*2;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
@@ -59,10 +31,12 @@ function autoClick(){
 		curseur.style.display = "block";		//Affiche le curseur de l'autoClick
 		img1.src = "images/cookie (copie).png";	//Modifie l'image por simuler un click
 	}
-	if(score1 >= prixCooki){			
-			clearInterval(ac);
+	if(score1 >= prixCooki){	
 			bouton.setAttribute("onClick", "clickMainAuto()");
-			ac = setInterval("autoClick()", 200);
+			if(score1 === prixCooki || score1 === prixCooki + 5){
+				temps >= 10 ? temps -= 2 : temps = 10;
+				console.log(temps);
+			}	
 		}
 	setTimeout(function(){						//Permet de lancer un fonction après un laps de temps choisis.
 		curseur.style.display = "none";			//Cache le curseur de l'autoClick
@@ -93,8 +67,7 @@ function resetscore(){										/*remet tout à zéro et stop la fonction autoCl
 	prixCooki = 30;
 	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
-	clearInterval(ac);	
-										//Stop la répétition de l'auto_click
+	clearInterval(ac);										//Stop la répétition de l'auto_click
 }
 
 
