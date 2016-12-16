@@ -20,7 +20,8 @@ function auto_click(){
 	}
 }
 function auto_clickX2(){
-	if(score1 >= 100){									
+	if(score1 >= 100){	
+		clearInterval(ac);								
 		ac = setInterval("autoClick()", 100);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
 		score1 -= 100;							//Retire 30 à la variable score1
 		prix.innerHTML = "<strong>prix : 300 cookies</strong>";  //Modifie le texte du prix
@@ -29,7 +30,8 @@ function auto_clickX2(){
 	}
 }
 function auto_clickX3(){
-	if(score1 >= 300){									
+	if(score1 >= 300){	
+		clearInterval(ac);								
 		ac = setInterval("autoClick()", 50);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
 		score1 -= 300;							//Retire 30 à la variable score1
 		prix.innerHTML = "<strong>Indisponible</strong>";  //Modifie le texte du prix
@@ -46,7 +48,7 @@ function autoClick(){
 	setTimeout(function(){						//Permet de lancer un fonction après un laps de temps choisis.
 		curseur.style.display = "none";			//Cache le curseur de l'autoClick
 		img1.src = "images/cookie.png";			//Modifie l'image
-	}, 100);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
+	}, 50);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
 }	
 
 img1.addEventListener("click", function(){
