@@ -42,6 +42,7 @@ h2 {
 
 #img1{
 	cursor: pointer;
+
 }
 #curseur{
 	width: 50px;
@@ -55,7 +56,7 @@ h2 {
 	border:5px solid #231500;
 	margin:auto;
 	margin-top: 10px;
-	background-image: radial-gradient(#E1BB83, #543300);
+	background-image: radial-gradient(#E8C393, #543300);
 	box-shadow: 6px 6px 0 black;
 	width: 350px;
 	display: flex;
@@ -70,7 +71,7 @@ h2 {
 #score { /*Texte qui affiche le score*/
 	border: 2px solid #231500;
 	text-align: center;
-	background-color: #FFFFFF;
+	background-image: radial-gradient(white, #C3945F);
 	font-weight: bold;
 	width: 100px;
 	height: 5px;
@@ -124,4 +125,7 @@ h2 {
 
 .bas {
 	margin-right: 20px;
+}
+strong {
+	background-color: #DEB88C;
 }
