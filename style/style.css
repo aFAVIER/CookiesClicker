@@ -1,5 +1,5 @@
 body {
-	background: url(http://img1.mxstatic.com/wallpapers/34903c7e90faffd307d10ad7f99251bb_large.jpeg) no-repeat center fixed;
+	background: url(../images/fond1.jpeg) no-repeat center fixed;
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 
@@ -7,21 +7,21 @@ body {
 
 .conteneur { /*Contenu principal de la page qui contient tous les éléments*/
 	margin: auto;
-	width: 500px;
 	text-align: center;
 	margin-top: 30px;
 }
 .cookie{
 	position: relative;
 	display: flex;
+	width: 100%;
 	
 
 }
 
 h1 {
 	margin-top: 250px;
-	margin-left: -290px;
 	font-size: 80px;
+	margin-left: 50px;
 	
 	text-shadow: -0.07em 0 #F38200,
              0.07em 0 white;
@@ -29,7 +29,6 @@ h1 {
 }
 h2 {
 	margin-top: 250px;
-	margin-right: 100px;
 	font-size: 80px;
 	
 	text-shadow: -0.07em 0 #F38200,
