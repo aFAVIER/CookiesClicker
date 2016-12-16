@@ -1,21 +1,35 @@
 var score1 = 0; 											/*Variable score*/
 var ac ;													/*variable de l'auto_click */
-var img1 = document.getElementById("img1");
-var prix = document.getElementById("prix").innerHTML = 30;	/*Initialise le prix à 30*/
-var score = document.getElementById("score");
-var bouton = document.getElementById("bouton");
-var bScore = document.getElementById("bestScore");
+var img1 = document.getElementById("img1");					//Image cookie
+var prix = document.getElementById("prix");					//Varibale prix
+var score = document.getElementById("score");				//Affichage score
+var bouton = document.getElementById("bouton");				//Bouton auto_click
+var bScore = document.getElementById("bestScore");			//Affichage meilleur score
+var curseur = document.getElementById("curseur");			//Curseur auto_Click
+
+prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
 
 function auto_click(){						
 	if(score1 >= 30){									
-		ac = setInterval("autoClick()", 20);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
+		ac = setInterval("autoClick()", 200);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
+		score1 -= 30;							//Retire 30 à la variable score1
+		prix.innerHTML = "<strong>Indisponible</strong>";  //Modifie le texte du prix
+		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
 	}
 }
 
 function autoClick(){
 	score1++;									/*Ajoute 1 à score1*/
 	score.innerHTML = score1;					/*Affiche le score sur la page */
+	if(score1++){
+		curseur.style.display = "block";		//Affiche le curseur de l'autoClick
+		img1.src = "images/cookie (copie).png";	//Modifie l'image por simuler un click
+	}
+	setTimeout(function(){						//Permet de lancer un fonction après un laps de temps choisis.
+		curseur.style.display = "none";			//Cache le curseur de l'autoClick
+		img1.src = "images/cookie.png";			//Modifie l'image
+	}, 100);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
 }	
 
 img1.addEventListener("click", function(){
@@ -35,14 +49,21 @@ img1.onmouseup = function() {
 function resetscore(){				/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
-	clearInterval(ac);
+	bouton.setAttribute("onClick", "auto_click()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
+	prix.innerHTML = "<strong>prix : 30 cookies</strong>"; //Modifie l'affichage du prix de l'auto_click
+	clearInterval(ac);									//Stop la répétition de l'auto_click
 }
+
+
+/*SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE
+ SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE
+  SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE */
 
 function setCookie(sName, sValue) {  /*Un simple copiez collez que je n'ai pas encore étudié et compris ! */
 
         var today = new Date(), expires = new Date();
 
-        expires.setTime(today.getTime() + (15*24*60*60*1000));
+        expires.setTime(today.getTime() + (5*24*60*60*1000));
 
         document.cookie = sName + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
 }
@@ -62,12 +83,25 @@ function getCookie(sName) {
         }       
         return null;
 }
-window.onbeforeunload = function(){		/*Creation d'un cookie seulement si score1 > au cookie en cours */
-	if(score1 > parseInt(getCookie("high_score"))){
-		setCookie("high_score", score1);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function save(){
+	if(score1 > parseInt(getCookie("high_score"))){      //Compare le score en cours avec celui enregistré dans high_score
+		setCookie("high_score", score1);				//Modifie high_score
 	}
+	if(!getCookie("high_score")){						//Si high_score n'existe pas, alors on le créé
+		setCookie("high_score", 0);
+	}
+
+	bScore.innerHTML = getCookie("high_score");	//Affiche high_score
 }
-if(!getCookie("high_score")){
-	setCookie("high_score", 0);
+var autoSave = setInterval("save()", 60000); // Sauvegarde automatique toute les minutes
+
+window.onbeforeunload = function(){	//Sauvegarde dès que l'événement de fermeture de fenetre est détecté
+	save();
 }
-bScore.innerHTML = getCookie("high_score");
+	
+bScore.innerHTML = getCookie("high_score");	//Affiche high_score sur la page
