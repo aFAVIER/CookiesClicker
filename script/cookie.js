@@ -14,11 +14,28 @@ function auto_click(){
 	if(score1 >= 30){									
 		ac = setInterval("autoClick()", 200);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
 		score1 -= 30;							//Retire 30 à la variable score1
-		prix.innerHTML = "<strong>Indisponible</strong>";  //Modifie le texte du prix
+		prix.innerHTML = "<strong>prix : 100 cookies</strong>";  //Modifie le texte du prix
 		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
+		bouton.setAttribute("onClick", "auto_clickX2()");
 	}
 }
-
+function auto_clickX2(){
+	if(score1 >= 100){									
+		ac = setInterval("autoClick()", 100);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
+		score1 -= 100;							//Retire 30 à la variable score1
+		prix.innerHTML = "<strong>prix : 300 cookies</strong>";  //Modifie le texte du prix
+		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
+		bouton.setAttribute("onClick", "auto_clickX3()");
+	}
+}
+function auto_clickX3(){
+	if(score1 >= 300){									
+		ac = setInterval("autoClick()", 50);/*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes*/
+		score1 -= 300;							//Retire 30 à la variable score1
+		prix.innerHTML = "<strong>Indisponible</strong>";  //Modifie le texte du prix
+		bouton.removeAttribute("onClick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
+	}
+}
 function autoClick(){
 	score1++;									/*Ajoute 1 à score1*/
 	score.innerHTML = score1;					/*Affiche le score sur la page */
