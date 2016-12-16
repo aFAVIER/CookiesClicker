@@ -48,7 +48,6 @@ function clickMainAuto(){
 		prixCooki = prixCooki*2;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
 		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
-		bouton.setAttribute("onClick", "clickMainAuto()");
 	}
 }
 
@@ -60,6 +59,11 @@ function autoClick(){
 		curseur.style.display = "block";		//Affiche le curseur de l'autoClick
 		img1.src = "images/cookie (copie).png";	//Modifie l'image por simuler un click
 	}
+	if(score1 >= prixCooki){			
+			clearInterval(ac);
+			bouton.setAttribute("onClick", "clickMainAuto()");
+			ac = setInterval("autoClick()", 200);
+		}
 	setTimeout(function(){						//Permet de lancer un fonction après un laps de temps choisis.
 		curseur.style.display = "none";			//Cache le curseur de l'autoClick
 		img1.src = "images/cookie.png";			//Modifie l'image
@@ -86,6 +90,7 @@ img1.onmouseup = function() {
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
+	prixCooki = 30;
 	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
 	clearInterval(ac);	
