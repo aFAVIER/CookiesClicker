@@ -1,5 +1,5 @@
 var score1 = 0; 	
-var temps = 2000;										/*Variable score*/
+var temps = 1000;										/*Variable score*/
 var ac;													/*variable de l'auto_click */
 var compteurClick = 0;									//Gre les multiples curseur
 var top1 = 245;
