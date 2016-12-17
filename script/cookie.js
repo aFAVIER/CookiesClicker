@@ -86,32 +86,14 @@ function multipleClicks(){
 	Bon Courage car moi, j'ai la flemme et du gros Boulot à accomplir !! */
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//Ma fonction multipli la vitesse du clic-auto, donc ici diminu le temps entre chaque clic de 0.25%
-
-/*	function multipleClicks(){
-		if (score1 >= prixMultiClic){ 			//vérif si le score obtenu est > ou = au prix de l'option
-			//clearInterval (ac)	
-			temps = temps*0.25;					//accélération de la vitesse du clicAuto				
-			prixMultiClic = prixMultiClic*2;	// prix *2 a chaque activation
-			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>"; //affiche le prix
-			bouton.removeAttribute("onClick");   //supp de l'attribut onClick
-		}
-}
-
-*/
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
 	temps = 200;
+	prixMultiClic = 30;
 	multipl = 1;
-	bouton.setAttribute("onClick", "clickMainAuto()", "multipleClicks()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
+	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
 	//bouton.setAttribute("onClick", "multipleClicks()");
 	multiplicateur.innerHTML = "Multiplicateur X2";
 	prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
