@@ -1,6 +1,9 @@
 var score1 = 0; 	
-var temps = 200;										/*Variable score*/
+var temps = 2000;										/*Variable score*/
 var ac;													/*variable de l'auto_click */
+var compteurClick = 0;									//Gre les multiples curseur
+var top1 = 245;
+var left1 = 44;
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Variable prix
 //var prix_score = 30;
@@ -8,7 +11,7 @@ var prixCooki = 30;
 var score = document.getElementById("score");				//Affichage score
 var bouton = document.getElementById("bouton");				//Bouton auto_click
 var bScore = document.getElementById("bestScore");			//Affichage meilleur score
-var curseur = document.getElementById("curseur");			//Curseur auto_Click
+var curseur = document.getElementsByClassName("curseur");			//Curseur auto_Click
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
@@ -18,6 +21,14 @@ prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
 function clickMainAuto(){
 	if (score1 >= prixCooki){
+		top1 -= 10;
+		left1 -= 1;
+		if(score1>=60){
+			compteurClick ++;
+		}
+		if(compteurClick > 0){
+			images(top1, left1);
+		}
 		clearInterval(ac);
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
 		score1 -= prixCooki;							//Retire 30 à la variable score1
@@ -28,25 +39,41 @@ function clickMainAuto(){
 
 	}
 }
+function images(top, left){
+	var img2 = document.createElement("img");
+	img2.src ="images/hand-146959.svg";
+	img2.className = "curseur";
+	img2.style.position = "absolute";
+	img2.width = 50;
+	img2.style.height = "50px;"
+	img2.style.top = top + "px";
+	img2.style.left = left + "%";
+
+	document.getElementById("cookie").appendChild(img2);
+}
 
 function autoClick(){
-	score1++;									//Ajoute 1 à score1
+	score1+=curseur.length;									//Ajoute 1 à score1
 	score.innerHTML = score1;					//Affiche le score sur la page 
 	if(score1++){
-		curseur.style.display = "inline";		//Affiche le curseur de l'autoClick
+		for( i = 0; i < curseur.length; i++){
+			curseur[i].style.display = "inline";		//Affiche le curseur de l'autoClick
+		}	
 		img1.src = "images/cookie (copie).png";	//Modifie l'image pour simuler un click
 	}
 	if(score1 >= prixCooki){	
-			bouton.setAttribute("onClick", "clickMainAuto()");
-			if(score1 === prixCooki || score1 === prixCooki + 5){
-				temps >= 10 ? temps -= 2 : temps = 10;
-				console.log(temps);
-			}	
-		}
-	setTimeout(function(){						//Permet de lancer un fonction après un laps de temps choisis.
-		curseur.style.display = "none";			//Cache le curseur de l'autoClick
+		bouton.setAttribute("onClick", "clickMainAuto()");
+		if(score1 === prixCooki || score1 === prixCooki + 5){
+			temps >= 10 ? temps -= 20 : temps = 10;
+			console.log(temps);
+		}	
+	}
+	setTimeout(function(){						//Permet de lancer une fonction après un laps de temps choisis.
+		for(i = 0; i < curseur.length; i++){
+			curseur[i].style.display = "none";			//Cache le curseur de l'autoClick
+		}	
 		img1.src = "images/cookie.png";			//Modifie l'image
-	}, 50);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
+	}, 250);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
 }	
 
 img1.addEventListener("click", function(){

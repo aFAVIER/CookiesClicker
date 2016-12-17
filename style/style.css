@@ -11,7 +11,7 @@ body {
 	text-align: center;
 	margin-top: 30px;
 }
-.cookie{
+#cookie{
 	position: relative;
 	display: flex;
 	justify-content: space-between;
@@ -34,12 +34,12 @@ h1 {
 	width: 300px;
 	height: 300px;
 }
-#curseur{
+.curseur{
 	width: 50px;
 	height: 50px;
 	position: absolute;
-	top: 220px;
-	left: 38%;
+	top: 240px;
+	left: 44%;
 	display: none;
 }
 .score{
