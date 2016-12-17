@@ -1,16 +1,17 @@
 var score1 = 0; 	
-var temps = 200;										/*Variable score*/
+var temps = 4000;										/*Variable score*/
 var ac;													/*variable de l'auto_click */
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Variable prix
 //var prix_score = 30;
-var prixCooki = 30;
-var multipl = 1;
-var prixMultiClic = 30;			
+var prixCooki = 30;											//prix cookie de base
 var score = document.getElementById("score");				//Affichage score
 var bouton = document.getElementById("bouton");				//Bouton auto_click
 var bScore = document.getElementById("bestScore");			//Affichage meilleur score
 var curseur = document.getElementById("curseur");			//Curseur auto_Click
+var prixMultiClic = 30;										//prix du multiclic de base
+var multipl = 1;											//pour ajouter1 au score et ensuite sert pour la fonction multiclic
+
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
@@ -60,13 +61,15 @@ img1.addEventListener("click", function(){
 	}, false);
 
 
+
+
 function multipleClicks(){
 	if (score1 >= prixMultiClic){
 			score1 -= prixMultiClic;
-			multipl = multipl * 2;
+			multipl = multipl + 1;
 			prixMultiClic = prixMultiClic *2;
 			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>";
-			multiplicateur.innerHTML = "Multiplicateur X"+multipl*2;
+			multiplicateur.innerHTML = "Multiplicateur X"+(multipl + 1);
 			bouton.removeAttribute("onClick");
 	}
 }
@@ -102,18 +105,14 @@ function multipleClicks(){
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
 	temps = 200;
 	multipl = 1;
-	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
-	bouton.setAttribute("onClick", "multipleClicks()");
+	bouton.setAttribute("onClick", "clickMainAuto()", "multipleClicks()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
+	//bouton.setAttribute("onClick", "multipleClicks()");
 	multiplicateur.innerHTML = "Multiplicateur X2";
 	prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
