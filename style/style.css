@@ -1,5 +1,5 @@
 body {
-	background: url(../images/fond1.jpeg) no-repeat center fixed;
+	background: url(../images/fond1.jpeg) no-repeat;
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 
@@ -7,48 +7,39 @@ body {
 
 .conteneur { /*Contenu principal de la page qui contient tous les éléments*/
 	margin: auto;
+	width: 1200px;
 	text-align: center;
 	margin-top: 30px;
 }
 .cookie{
 	position: relative;
 	display: flex;
+	justify-content: space-between;
+	padding-left: 5px;
 	width: 100%;
-	
 
 }
 
 h1 {
-	margin-top: 250px;
+	margin-top: 170px;
 	font-size: 80px;
-	margin-left: 50px;
+	margin-left: -10px;
 	
 	text-shadow: -0.07em 0 #F38200,
              0.07em 0 white;
-	
-}
-h2 {
-	margin-top: 250px;
-	font-size: 80px;
-	
-	text-shadow: -0.07em 0 #F38200,
-             0.07em 0 white;
-
-	
-
-
 }
 
 #img1{
 	cursor: pointer;
-
+	width: 300px;
+	height: 300px;
 }
 #curseur{
 	width: 50px;
 	height: 50px;
 	position: absolute;
-	top: 300px;
-	left: 37%;
+	top: 220px;
+	left: 38%;
 	display: none;
 }
 .score{

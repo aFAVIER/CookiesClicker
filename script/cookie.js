@@ -1,8 +1,8 @@
 var score1 = 0; 	
 var temps = 200;										/*Variable score*/
-var ac ;													/*variable de l'auto_click */
+var ac;													/*variable de l'auto_click */
 var img1 = document.getElementById("img1");					//Image cookie
-var prix = document.getElementById("prix");					//Varibale prix
+var prix = document.getElementById("prix");					//Variable prix
 //var prix_score = 30;
 var prixCooki = 30;				
 var score = document.getElementById("score");				//Affichage score
@@ -12,25 +12,29 @@ var curseur = document.getElementById("curseur");			//Curseur auto_Click
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
+/* FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
+ // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
+  // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU */
+
 function clickMainAuto(){
 	if (score1 >= prixCooki){
 		clearInterval(ac);
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
 		score1 -= prixCooki;							//Retire 30 à la variable score1
 		prixCooki = prixCooki*2;
+		temps >= 10 ? temps -= 2 : temps = 10;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
 		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
 
 	}
 }
 
-
 function autoClick(){
 	score1++;									//Ajoute 1 à score1
 	score.innerHTML = score1;					//Affiche le score sur la page 
 	if(score1++){
-		curseur.style.display = "block";		//Affiche le curseur de l'autoClick
-		img1.src = "images/cookie (copie).png";	//Modifie l'image por simuler un click
+		curseur.style.display = "inline";		//Affiche le curseur de l'autoClick
+		img1.src = "images/cookie (copie).png";	//Modifie l'image pour simuler un click
 	}
 	if(score1 >= prixCooki){	
 			bouton.setAttribute("onClick", "clickMainAuto()");
@@ -50,26 +54,55 @@ img1.addEventListener("click", function(){
 		score.innerHTML = score1; 				//Modifie le contenu de la balise score par score1
 	}, false);
 
-
-
-img1.onmousedown = function() {
-	img1.src = "images/cookie (copie).png";
-}
-
-img1.onmouseup = function() {
-	img1.src = "images/cookie.png";
-}
-
-
-
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
+	temps = 200;
 	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
 	clearInterval(ac);										//Stop la répétition de l'auto_click
 }
+
+
+/* ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU
+ // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU
+  // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU // ANIMATION JEU*/
+var large = 300;
+var dc;
+var t = 1;
+
+img1.addEventListener("mousedown", function() {
+	img1.src = "images/cookie (copie).png";
+}, false);
+
+img1.addEventListener("mouseup", function() {
+	img1.src = "images/cookie.png";
+}, false);
+
+function aniime(){
+	if(large >= 250 && t === 1){
+		img1.style.width = large +"px";
+		img1.style.height = large +"px";
+		large-= 10;
+		if(large <= 250)
+			t = 2;
+	}
+	else if(large < 300 && t === 2){
+		img1.style.width = large +"px";
+		img1.style.height = large +"px";
+		large += 10;
+		if(large >= 300){
+			large = 300;
+			clearInterval(dc);
+			t = 1;
+		}
+	}
+}
+img1.addEventListener("click", function(){
+		clearInterval(dc);
+		dc = setInterval("aniime()", 2);
+}, false);
 
 
 /*SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE SAUVEGARDE
