@@ -54,6 +54,15 @@ img1.addEventListener("click", function(){
 		score.innerHTML = score1; 				//Modifie le contenu de la balise score par score1
 	}, false);
 
+
+img1.addEventListener("mousedown", function() {
+	img1.src = "images/cookie (copie).png";
+}, false);
+
+img1.addEventListener("mouseup", function() {
+	img1.src = "images/cookie.png";
+}, false);
+
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
