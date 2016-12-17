@@ -54,14 +54,19 @@ img1.addEventListener("click", function(){
 		score.innerHTML = score1; 				//Modifie le contenu de la balise score par score1
 	}, false);
 
+function multipleClicks(){
+	/*Dois multiplier la valeur de score1 pour chaque cliques ce qui implique de 
+	modifier la fonction du dessus pour qu'elle s'adapte à celle-ci, une condition devrait
+	faire l'affaire mais la vrai question reste de savoir comment la coder.
 
-img1.addEventListener("mousedown", function() {
-	img1.src = "images/cookie (copie).png";
-}, false);
+	Ensuite à chaque click sur le bouton "Multiplicateur", le texte de celui ci doit changer
+	on passerait du coup à Multiplicateur X3 puis X4 etc..
 
-img1.addEventListener("mouseup", function() {
-	img1.src = "images/cookie.png";
-}, false);
+	Et on ne doit pouvoir cliquer qu'une fois par palier, donc n'oublis pas de jarter la fonction
+	à chaque clicks.
+
+	Bon Courage car moi, j'ai la flemme et du gros Boulot à accomplir !! */
+}
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
