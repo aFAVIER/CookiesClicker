@@ -52,13 +52,13 @@ img1.addEventListener("click", function(){
 
 
 
-img1.onmousedown = function() {
+img1.addEventListener("mousedown", function() {
 	img1.src = "images/cookie (copie).png";
-}
+}, false);
 
-img1.onmouseup = function() {
+img1.addEventListener("mouseup", function() {
 	img1.src = "images/cookie.png";
-}
+}, false);
 
 
 
