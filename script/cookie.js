@@ -4,13 +4,17 @@ var ac;													/*variable de l'auto_click */
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Variable prix
 //var prix_score = 30;
-var prixCooki = 30;				
+var prixCooki = 30;
+var multipl = 1;
+var prixMultiClic = 30;			
 var score = document.getElementById("score");				//Affichage score
 var bouton = document.getElementById("bouton");				//Bouton auto_click
 var bScore = document.getElementById("bestScore");			//Affichage meilleur score
 var curseur = document.getElementById("curseur");			//Curseur auto_Click
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
+prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
+multiplicateur.innerHTML = "Multiplicateur X2";
 
 /* FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
  // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
@@ -24,10 +28,11 @@ function clickMainAuto(){
 		prixCooki = prixCooki*2;
 		temps >= 10 ? temps -= 2 : temps = 10;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
-		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
+		bouton.removeAttribute("onClick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
 
 	}
 }
+
 
 function autoClick(){
 	score1++;									//Ajoute 1 à score1
@@ -50,11 +55,21 @@ function autoClick(){
 }	
 
 img1.addEventListener("click", function(){
-		score1++;								 //Ajoute 1 à la variable de score
+		score1 = score1 + multipl;								 //Ajoute 1 à la variable de score
 		score.innerHTML = score1; 				//Modifie le contenu de la balise score par score1
 	}, false);
 
+
 function multipleClicks(){
+	if (score1 >= prixMultiClic){
+			score1 -= prixMultiClic;
+			multipl = multipl * 2;
+			prixMultiClic = prixMultiClic *2;
+			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>";
+			multiplicateur.innerHTML = "Multiplicateur X"+multipl*2;
+			bouton.removeAttribute("onClick");
+	}
+}
 	/*Dois multiplier la valeur de score1 pour chaque cliques ce qui implique de 
 	modifier la fonction du dessus pour qu'elle s'adapte à celle-ci, une condition devrait
 	faire l'affaire mais la vrai question reste de savoir comment la coder.
@@ -66,14 +81,41 @@ function multipleClicks(){
 	à chaque clicks.
 
 	Bon Courage car moi, j'ai la flemme et du gros Boulot à accomplir !! */
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Ma fonction multipli la vitesse du clic-auto, donc ici diminu le temps entre chaque clic de 0.25%
+
+/*	function multipleClicks(){
+		if (score1 >= prixMultiClic){ 			//vérif si le score obtenu est > ou = au prix de l'option
+			//clearInterval (ac)	
+			temps = temps*0.25;					//accélération de la vitesse du clicAuto				
+			prixMultiClic = prixMultiClic*2;	// prix *2 a chaque activation
+			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>"; //affiche le prix
+			bouton.removeAttribute("onClick");   //supp de l'attribut onClick
+		}
 }
+
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
 	temps = 200;
-	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
+	multipl = 1;
+	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
+	bouton.setAttribute("onClick", "multipleClicks()");
+	multiplicateur.innerHTML = "Multiplicateur X2";
+	prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
 	clearInterval(ac);										//Stop la répétition de l'auto_click
 }
