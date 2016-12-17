@@ -33,7 +33,7 @@ function clickMainAuto(){
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
 		score1 -= prixCooki;							//Retire 30 à la variable score1
 		prixCooki = prixCooki*2;
-		temps >= 10 ? temps -= 2 : temps = 10;
+		temps >= 10 ? temps -= 50 : temps = 10;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
 		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
 
@@ -53,7 +53,7 @@ function images(top, left){
 }
 
 function autoClick(){
-	score1+=curseur.length;									//Ajoute 1 à score1
+	score1+=curseur.length -1;									//Ajoute 1 à score1
 	score.innerHTML = score1;					//Affiche le score sur la page 
 	if(score1++){
 		for( i = 0; i < curseur.length; i++){
