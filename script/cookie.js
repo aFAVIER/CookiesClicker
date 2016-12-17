@@ -82,24 +82,13 @@ img1.addEventListener("click", function(){
 	}, false);
 
 function multipleClicks(){
-	/*Dois multiplier la valeur de score1 pour chaque cliques ce qui implique de 
-	modifier la fonction du dessus pour qu'elle s'adapte à celle-ci, une condition devrait
-	faire l'affaire mais la vrai question reste de savoir comment la coder.
-
-	Ensuite à chaque click sur le bouton "Multiplicateur", le texte de celui ci doit changer
-	on passerait du coup à Multiplicateur X3 puis X4 etc..
-
-	Et on ne doit pouvoir cliquer qu'une fois par palier, donc n'oublis pas de jarter la fonction
-	à chaque clicks.
-
-	Bon Courage car moi, j'ai la flemme et du gros Boulot à accomplir !! */
 }
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
-	temps = 200;
+	temps = 1000;
 	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
 	clearInterval(ac);										//Stop la répétition de l'auto_click
