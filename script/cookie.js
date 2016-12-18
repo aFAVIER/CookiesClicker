@@ -1,19 +1,24 @@
 var score1 = 0; 	
 var temps = 1000;										/*Variable score*/
 var ac;													/*variable de l'auto_click */
-var compteurClick = 0;									//Gre les multiples curseur
-var top1 = 245;
+var compteurClick = 0;									//Gere les multiples curseur
+var top1 = 245;											//Emplacement des curseur
 var left1 = 44;
+var tabImages = new Array;								//contiendra les curseurs additionnels
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Variable prix
-//var prix_score = 30;
-var prixCooki = 30;				
+var prixCooki = 30;											//prix cookie de base
 var score = document.getElementById("score");				//Affichage score
 var bouton = document.getElementById("bouton");				//Bouton auto_click
 var bScore = document.getElementById("bestScore");			//Affichage meilleur score
 var curseur = document.getElementsByClassName("curseur");			//Curseur auto_Click
+var multiplicateur = document.getElementById("multiplicateur");
+var prixMultiClic = 30;										//prix du multiclic de base
+var multipl = 1;											//pour ajouter1 au score et ensuite sert pour la fonction multiclic
 
 prix.innerHTML = "<strong>prix : 30 cookies</strong>";
+prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
+multiplicateur.innerHTML = "Multiplicateur X2";
 
 /* FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
  // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
@@ -21,30 +26,28 @@ prix.innerHTML = "<strong>prix : 30 cookies</strong>";
 
 function detection(){
 	score1 >= prixCooki ? bouton.disabled = false : bouton.disabled = true;
+	score1 >= prixMultiClic ?	multiplicateur.disabled = false : multiplicateur.disabled = true;
 }
 setInterval("detection()", 200);
 
 function clickMainAuto(){
-	if (score1 >= prixCooki){
+	if (score1 >= prixCooki){			//A chaque tour, on modifie l'emplacement du futur curseur
 		top1 -= 10;
 		left1 -= 1;
-		if(score1>=60){
-			compteurClick ++;
-		}
-		if(compteurClick > 0){
+		if(compteurClick > 0){			//Créer un curseur qu'a partir du second appel à la fonction
 			images(top1, left1);
 		}
-		clearInterval(ac);
+		temps >= 10 ? temps -= 50 : temps = 10; //Accelere l'autoClick à chaque tour de boucle
+		clearInterval(ac);				//Stop la répétition précédente
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
-		score1 -= prixCooki;							//Retire 30 à la variable score1
-		prixCooki = prixCooki*2;
-		temps >= 10 ? temps -= 50 : temps = 10;
+		score1 -= prixCooki;					//Enleve le prix à la variable score
+		score.innerHTML = score1;							
+		prixCooki = prixCooki*2;				
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
-		bouton.disabled("true");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
-
+		compteurClick ++;				//Permettra de lancer la fonction image au prochain tour de fonction
 	}
 }
-function images(top, left){
+function images(top, left){						//Fonction creatrice de curseur
 	var img2 = document.createElement("img");
 	img2.src ="images/hand-146959.svg";
 	img2.className = "curseur";
@@ -53,25 +56,19 @@ function images(top, left){
 	img2.style.height = "50px;"
 	img2.style.top = top + "px";
 	img2.style.left = left + "%";
-
-	document.getElementById("cookie").appendChild(img2);
+	tabImages.push(img2)
+	document.getElementById("cookie").appendChild(tabImages[compteurClick-1]); //Ajoute les curseurs à la page
 }
 
+
 function autoClick(){
-	score1+=curseur.length -1;									//Ajoute 1 à score1
+	score1+=curseur.length -1;									//Ajoute autant de points qu'il y a de curseurs à score1
 	score.innerHTML = score1;					//Affiche le score sur la page 
 	if(score1++){
 		for( i = 0; i < curseur.length; i++){
 			curseur[i].style.display = "inline";		//Affiche le curseur de l'autoClick
 		}	
 		img1.src = "images/cookie (copie).png";	//Modifie l'image pour simuler un click
-	}
-	if(score1 >= prixCooki){	
-		bouton.setAttribute("onClick", "clickMainAuto()");
-		if(score1 === prixCooki || score1 === prixCooki + 5){
-			temps >= 10 ? temps -= 20 : temps = 10;
-			console.log(temps);
-		}	
 	}
 	setTimeout(function(){						//Permet de lancer une fonction après un laps de temps choisis.
 		for(i = 0; i < curseur.length; i++){
@@ -82,21 +79,42 @@ function autoClick(){
 }	
 
 img1.addEventListener("click", function(){
-		score1++;								 //Ajoute 1 à la variable de score
+		score1 = score1 + multipl;								 //Ajoute 1 à la variable de score
 		score.innerHTML = score1; 				//Modifie le contenu de la balise score par score1
 	}, false);
 
 function multipleClicks(){
+	if (score1 >= prixMultiClic){
+			score1 -= prixMultiClic;
+			score.innerHTML = score1;
+			multipl = multipl + 1;
+			prixMultiClic = prixMultiClic *2;
+			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>";
+			multiplicateur.innerHTML = "Multiplicateur X"+(multipl + 1);
+	}
 }
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
-	temps = 1000;
-	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction auto_click()
-	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
+	temps = 1000;											//reinitialisation de la vitesse de base
+	bouton.disabled = true;									//desactivation du bouton autoclick
+	multiplicateur.disabled = true;							//desactivation du bouton Multiplicateur
+	prixMultiClic = 30;
+	multipl = 1;
+	multiplicateur.innerHTML = "Multiplicateur X2";							//MAJ Affichage
+	prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
+	prix.innerHTML = "<strong>prix : 30 cookies</strong>";				 //Modifie l'affichage du prix de l'auto_click
+	compteurClick = 0;										
+	top1 = 245;												//reinitialise les positions pour les futurs curseurs
+	left1 = 44;
+	for(i = tabImages.length -1; i >= 0; i--){				//Jarte tout les curseurs de la page
+		document.getElementById("cookie").removeChild(tabImages[i]);
+	}
+	tabImages = new Array;									// reinitialise le tableau
 	clearInterval(ac);										//Stop la répétition de l'auto_click
+	
 }
 
 
