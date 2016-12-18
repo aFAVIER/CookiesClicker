@@ -4,6 +4,7 @@ var ac;													/*variable de l'auto_click */
 var compteurClick = 0;									//Gere les multiples curseur
 var top1 = 245;											//Emplacement des curseur
 var left1 = 44;
+var costumes = 0;
 var tabImages = new Array;								//contiendra les curseurs additionnels
 var img1 = document.getElementById("img1");					//Image cookie
 var prix = document.getElementById("prix");					//Variable prix
@@ -30,6 +31,16 @@ function detection(){
 }
 setInterval("detection()", 200);
 
+function costume(){
+	if(costumes === 0){
+		img1.src = "images/PerfectCookie.png"
+		costumes++;
+	}
+	else{
+		img1.src = "images/cookie.png"
+		costumes = 0;
+	}
+}
 function clickMainAuto(){
 	if (score1 >= prixCooki){			//A chaque tour, on modifie l'emplacement du futur curseur
 		top1 -= 10;
@@ -68,13 +79,13 @@ function autoClick(){
 		for( i = 0; i < curseur.length; i++){
 			curseur[i].style.display = "inline";		//Affiche le curseur de l'autoClick
 		}	
-		img1.src = "images/cookie (copie).png";	//Modifie l'image pour simuler un click
+		costumes >= 1 ? img1.src = "images/PerfectCookie.png" : img1.src = "images/cookie (copie).png";	//Modifie l'image pour simuler un click
 	}
 	setTimeout(function(){						//Permet de lancer une fonction après un laps de temps choisis.
 		for(i = 0; i < curseur.length; i++){
 			curseur[i].style.display = "none";			//Cache le curseur de l'autoClick
 		}	
-		img1.src = "images/cookie.png";			//Modifie l'image
+		costumes >= 1 ? img1.src = "images/PerfectCookie.png" : img1.src = "images/cookie.png";			//Modifie l'image
 	}, 250);									//Se lance au bout de 100 je ne sais plus quoi de seconde.
 }	
 
@@ -126,22 +137,39 @@ var dc;
 var t = 1;
 
 img1.addEventListener("mousedown", function() {
-	img1.src = "images/cookie (copie).png";
+	costumes >= 1 ? img1.src = "images/PerfectCookie.png" : img1.src = "images/cookie (copie).png";
 }, false);
 
 img1.addEventListener("mouseup", function() {
-	img1.src = "images/cookie.png";
+	costumes >= 1 ? img1.src = "images/PerfectCookie.png" : img1.src = "images/cookie.png";
 }, false);
 
 function aniime(){
-	if(large >= 250 && t === 1){
+	if(large >= 250 && t === 1 && costumes === 0){
 		img1.style.width = large +"px";
 		img1.style.height = large +"px";
 		large-= 10;
 		if(large <= 250)
 			t = 2;
 	}
-	else if(large < 300 && t === 2){
+	else if(large < 300 && t === 2 && costumes === 0){
+		img1.style.width = large +"px";
+		img1.style.height = large +"px";
+		large += 10;
+		if(large >= 300){
+			large = 300;
+			clearInterval(dc);
+			t = 1;
+		}
+	}
+	if(large >= 250 && t === 1 && costumes >= 0){
+		img1.style.width = large +"px";
+		img1.style.height = large +"px";
+		large-= 10;
+		if(large <= 250)
+			t = 2;
+	}
+	else if(large < 300 && t === 2 && costumes >= 0){
 		img1.style.width = large +"px";
 		img1.style.height = large +"px";
 		large += 10;
