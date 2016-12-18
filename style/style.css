@@ -10,6 +10,7 @@ body {
 	width: 1200px;
 	text-align: center;
 	margin-top: 30px;
+	position: relative;
 }
 #cookie{
 	position: relative;
@@ -70,7 +71,19 @@ h1 {
 	padding-bottom: 20px;
 	margin-right: 5px;
 }
-
+#grpBouton{
+	text-shadow: -0.07em 0 #F38200,
+             0.07em 0 white;
+    color: black;
+}
+#bouton, #multiplicateur{
+             box-shadow: 5px 5px 0 black;
+}
+#meilleurScore{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 .resetbutton { /*Bouton de reset*/
 	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;

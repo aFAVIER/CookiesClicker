@@ -24,8 +24,26 @@ multiplicateur.innerHTML = "Multiplicateur X2";
 /* FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
  // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
   // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU */
-
+function bouton_color(){
+	if(score1 >= prixCooki){		
+		bouton.style.textShadow ="-0.07em 0 #F38200, 0.07em 0 white";
+		bouton.style.color = "black";
+	}
+	if(score1 >= prixMultiClic){		
+		multiplicateur.style.textShadow ="-0.07em 0 #F38200, 0.07em 0 white";
+		multiplicateur.style.color = "black";
+	}
+	if(score1 <= prixCooki){		
+		bouton.style.textShadow ="";
+		bouton.style.color = "";
+	}
+	if(score1 <= prixMultiClic){		
+		multiplicateur.style.textShadow ="";
+		multiplicateur.style.color = "";
+	}
+}
 function detection(){
+	bouton_color();
 	score1 >= prixCooki ? bouton.disabled = false : bouton.disabled = true;
 	score1 >= prixMultiClic ?	multiplicateur.disabled = false : multiplicateur.disabled = true;
 }
@@ -48,6 +66,8 @@ function clickMainAuto(){
 		if(compteurClick > 0){			//Créer un curseur qu'a partir du second appel à la fonction
 			images(top1, left1);
 		}
+
+		bouton_color();
 		temps >= 10 ? temps -= 50 : temps = 10; //Accelere l'autoClick à chaque tour de boucle
 		clearInterval(ac);				//Stop la répétition précédente
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
@@ -102,7 +122,8 @@ function multipleClicks(){
 			prixMultiClic = prixMultiClic *2;
 			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>";
 			multiplicateur.innerHTML = "Multiplicateur X"+(multipl + 1);
-	}
+	}	
+	bouton_color();
 }
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
@@ -120,6 +141,7 @@ function resetscore(){										/*remet tout à zéro et stop la fonction autoCl
 	compteurClick = 0;										
 	top1 = 245;												//reinitialise les positions pour les futurs curseurs
 	left1 = 44;
+	bouton_color()
 	for(i = tabImages.length -1; i >= 0; i--){				//Jarte tout les curseurs de la page
 		document.getElementById("cookie").removeChild(tabImages[i]);
 	}
