@@ -25,7 +25,8 @@ function clickMainAuto(){
 	if (score1 >= prixCooki){
 		clearInterval(ac);
 		ac = setInterval("autoClick()", temps);//*Déclenche la fonction autoClick() toute les 20 je ne sais plus quoi de secondes
-		score1 -= prixCooki;							//Retire 30 à la variable score1
+		score1 -= prixCooki;
+		score.innerHTML = score1;							//Retire 30 à la variable score1
 		prixCooki = prixCooki*2;
 		temps >= 10 ? temps -= 2 : temps = 10;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
@@ -66,25 +67,13 @@ img1.addEventListener("click", function(){
 function multipleClicks(){
 	if (score1 >= prixMultiClic){
 			score1 -= prixMultiClic;
+			score.innerHTML = score1;
 			multipl = multipl + 1;
 			prixMultiClic = prixMultiClic *2;
 			prixMultiplicateur.innerHTML = "<strong>prix : "+prixMultiClic+" cookies</strong>";
 			multiplicateur.innerHTML = "Multiplicateur X"+(multipl + 1);
-			bouton.removeAttribute("onClick");
 	}
 }
-	/*Dois multiplier la valeur de score1 pour chaque cliques ce qui implique de 
-	modifier la fonction du dessus pour qu'elle s'adapte à celle-ci, une condition devrait
-	faire l'affaire mais la vrai question reste de savoir comment la coder.
-
-	Ensuite à chaque click sur le bouton "Multiplicateur", le texte de celui ci doit changer
-	on passerait du coup à Multiplicateur X3 puis X4 etc..
-
-	Et on ne doit pouvoir cliquer qu'une fois par palier, donc n'oublis pas de jarter la fonction
-	à chaque clicks.
-
-	Bon Courage car moi, j'ai la flemme et du gros Boulot à accomplir !! */
-
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
 	score1 = 0;
@@ -94,7 +83,6 @@ function resetscore(){										/*remet tout à zéro et stop la fonction autoCl
 	prixMultiClic = 30;
 	multipl = 1;
 	bouton.setAttribute("onClick", "clickMainAuto()");		//Ajoute l'attribut onClick et lui confit la fonction clickMainAuto()
-	//bouton.setAttribute("onClick", "multipleClicks()");
 	multiplicateur.innerHTML = "Multiplicateur X2";
 	prixMultiplicateur.innerHTML = "<strong>prix : 30 cookies</strong>";
 	prix.innerHTML = "<strong>prix : 30 cookies</strong>";	 //Modifie l'affichage du prix de l'auto_click
