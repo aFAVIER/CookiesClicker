@@ -19,6 +19,11 @@ prix.innerHTML = "<strong>prix : 30 cookies</strong>";
  // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU
   // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU // FONCTION JEU */
 
+function detection(){
+	score1 >= prixCooki ? bouton.disabled = false : bouton.disabled = true;
+}
+setInterval("detection()", 200);
+
 function clickMainAuto(){
 	if (score1 >= prixCooki){
 		top1 -= 10;
@@ -35,7 +40,7 @@ function clickMainAuto(){
 		prixCooki = prixCooki*2;
 		temps >= 10 ? temps -= 50 : temps = 10;
 		prix.innerHTML = "<strong>prix : "+prixCooki+" cookies</strong>";  //Modifie le texte du prix
-		bouton.removeAttribute("onclick");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
+		bouton.disabled("true");		//Supprime l'attribut onClick du bouton auto-click car utilisable qu'une fois
 
 	}
 }
