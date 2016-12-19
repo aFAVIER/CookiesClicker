@@ -127,6 +127,7 @@ function multipleClicks(){
 }
 
 function resetscore(){										/*remet tout à zéro et stop la fonction autoClick') */
+	save();
 	score1 = 0;
 	score.innerHTML = 0;
 	prixCooki = 30;
